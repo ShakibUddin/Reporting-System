@@ -112,7 +112,8 @@ public class all_reports_page extends AppCompatActivity {
                         //converting base_64 string of image to Bitmap
                         try {
                             if(stringToImage(userimagestring)==null){
-                                Toast.makeText(all_reports_page.this,"shit",Toast.LENGTH_LONG).show();//shit means string to image is not working
+                                Toast.makeText(all_reports_page.this,"shit",Toast.LENGTH_LONG).show();
+                                //shit means string to image is not working
                                 //and im getting shit.....
                             }
                             userBitmap =  Bitmap.createScaledBitmap(stringToImage(userimagestring), 200, 200, false);
