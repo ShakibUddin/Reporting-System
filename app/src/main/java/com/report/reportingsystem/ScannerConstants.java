@@ -13,7 +13,7 @@ class ScannerConstants {
     public static int jsonArraySize=0;
     public static int index=0;
     public static String id="";
-    public static String ip="192.168.0.101";
+    public static String ip="192.168.0.103";
     public static String data_table="data";
     public static String task_table="task";
     public static String login_data_table="login_data";
@@ -26,6 +26,6 @@ class ScannerConstants {
     public static ArrayList<String> USER_ISSUE = new ArrayList<String>();
     public static ArrayList<String> USER_REPORT = new ArrayList<String>();
     public static ArrayList<String> issue = new ArrayList<String>();
-    public static ArrayList<Bitmap> selectedImageBitmap = new ArrayList<Bitmap>();
     public static ArrayList<String> selectedImageName = new ArrayList<String>();
+
 }

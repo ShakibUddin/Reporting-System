@@ -3,6 +3,7 @@ package com.report.reportingsystem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -11,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -52,10 +54,12 @@ public class report_submission_page extends AppCompatActivity implements Adapter
     private EditText imagename;
     private Button image;
     private Button submit;
+    private Button refresh;
     private String inputId="";
     private String inputReport="";
     private String inputIssue="";
     private String currentPhotoPath;
+    static final int REQUEST_TAKE_PHOTO = 1;
     private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private String issues[] = {"Room","Electronics","Library","Lab","Other"};
@@ -71,7 +75,12 @@ public class report_submission_page extends AppCompatActivity implements Adapter
         issue=(Spinner) findViewById(R.id.issueid);
         report=(EditText)findViewById(R.id.reportid);
         submit=(Button)findViewById(R.id.submitbutton);
+        refresh=(Button)findViewById(R.id.refreshbutton);
         image=(Button)findViewById(R.id.imagebutton);
+
+        ScannerConstants.image= BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.default_image);
+        ScannerConstants.image_name="default.png";
 
         ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, issues);
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -119,6 +128,15 @@ public class report_submission_page extends AppCompatActivity implements Adapter
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
+            }
+        });
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScannerConstants.image= BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                        R.drawable.default_image);
+                ScannerConstants.image_name="default.png";
+                Toast.makeText(report_submission_page.this,"Image cleared",Toast.LENGTH_LONG).show();
             }
         });
         submit.setOnClickListener(new View.OnClickListener() {
@@ -222,7 +240,6 @@ public class report_submission_page extends AppCompatActivity implements Adapter
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
         return  Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

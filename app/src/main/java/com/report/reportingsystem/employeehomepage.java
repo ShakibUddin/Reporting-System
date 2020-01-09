@@ -29,7 +29,7 @@ public class employeehomepage extends AppCompatActivity {
         settings=(Button)findViewById(R.id.employee_settings_button);
         logout=(Button)findViewById(R.id.employee_logout);
 
-        username.setText(ScannerConstants.user);
+        username.setText(ScannerConstants.user.toUpperCase());
 
         submit_report.setOnClickListener(new View.OnClickListener() {
             @Override

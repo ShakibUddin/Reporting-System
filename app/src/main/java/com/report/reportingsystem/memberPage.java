@@ -43,7 +43,7 @@ public class memberPage extends AppCompatActivity {
         settings=(Button)findViewById(R.id.member_settings_button);
         logout=(Button)findViewById(R.id.member_logout);
 
-        post.setText(ScannerConstants.user);
+        post.setText(ScannerConstants.user.toUpperCase());
 
         if(ScannerConstants.member_post.equals("Moderator")){
             issue_for_this_member="Other";

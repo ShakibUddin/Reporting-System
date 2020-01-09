@@ -96,6 +96,7 @@ public class signup extends AppCompatActivity {
                     Toast.makeText(signup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
                 }
                 if(username.getError()==null && id.getError()==null && inputPassWord.equals(inputConfirmPassWord)){
+                    checkData();
                     uploadData();
                     goToLoginPage();
                 }
@@ -108,6 +109,9 @@ public class signup extends AppCompatActivity {
     public void goToLoginPage(){
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
+    }
+    private void checkData(){
+
     }
     private void  uploadData(){
 

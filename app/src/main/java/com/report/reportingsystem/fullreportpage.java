@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
@@ -18,10 +20,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.SecureCacheResponse;
 import java.util.Collections;
@@ -37,12 +41,13 @@ public class fullreportpage extends AppCompatActivity {
     private String current_id="";
     private String current_issue="";
     private String current_report="";
-    private Bitmap current_image;
+    private String current_image_name;
     private String issue_for_this_report="";
     private String report_to_delete="";
     public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/uploadin_under_review.php";
     public static String TASK_UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/task.php";
     public static final String DELETE_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/delete_report.php";
+    private static String image_path_in_server="http://"+ScannerConstants.ip+"/ReportingSystem/images/"+ScannerConstants.selectedImageName.get(ScannerConstants.index)+".png";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +62,18 @@ public class fullreportpage extends AppCompatActivity {
         current_id=ScannerConstants.USERID.get(ScannerConstants.index);
         current_issue=ScannerConstants.USER_ISSUE.get(ScannerConstants.index);
         current_report=ScannerConstants.USER_REPORT.get(ScannerConstants.index);
-        current_image=ScannerConstants.selectedImageBitmap.get(ScannerConstants.index);
+        current_image_name=ScannerConstants.selectedImageName.get(ScannerConstants.index);
 
         fullreport.setText("ID : "+current_id+"\n\nIssue : "+current_issue+"\n\nReport : "+current_report);
-        seeimage.setImageBitmap(current_image);
-        if(seeimage.getDrawable() == null){
-            Toast.makeText(fullreportpage.this,"View is empty",Toast.LENGTH_LONG).show();
+
+        if(ScannerConstants.selectedImageName.get(ScannerConstants.index).equals("default")){
+            Bitmap defaultimage = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.drawable.default_image);
+            seeimage.setImageBitmap(defaultimage);
+        }
+        else{
+            //Toast.makeText(fullreportpage.this,current_image_name,Toast.LENGTH_LONG).show();
+            stringToBitmap(image_path_in_server);
         }
 
         approve.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +127,7 @@ public class fullreportpage extends AppCompatActivity {
     }
     public void delete_that_report_from_database(){
 
+        deleteImageFromServer();
         ScannerConstants.sql="";
         report_to_delete = "DELETE "+" FROM "+ScannerConstants.data_table+" WHERE id='"+current_id+"' AND issue='"+current_issue+"' AND report='"+current_report+"'";
         ScannerConstants.sql=report_to_delete;
@@ -147,6 +159,17 @@ public class fullreportpage extends AppCompatActivity {
         };
         MySingleton.getInstance(fullreportpage.this).addToRequestQue(stringRequest);
     }
+    public void deleteImageFromServer(){
+        File fdelete = new File(image_path_in_server);
+        if (fdelete.exists()) {
+           if(fdelete.delete()){
+               Toast.makeText(fullreportpage.this, "Report deleted", Toast.LENGTH_LONG).show();
+           }
+           else{
+               Toast.makeText(fullreportpage.this, "Report could not be deleted", Toast.LENGTH_LONG).show();
+           }
+        }
+    }
     public void notify_concerned_person(){
         //upload in task table
         StringRequest stringRequest = new StringRequest(Request.Method.POST, TASK_UPLOAD_URL, new Response.Listener<String>() {
@@ -176,6 +199,9 @@ public class fullreportpage extends AppCompatActivity {
             }
         };
         MySingleton.getInstance(fullreportpage.this).addToRequestQue(stringRequest);
+    }
+    public void stringToBitmap(String url) {
+        Picasso.get().load(url).into(seeimage);
     }
     public void admin_page(){
         Intent intent = new Intent(this,adminhomepage.class);

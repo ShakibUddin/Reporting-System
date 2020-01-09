@@ -88,7 +88,6 @@ public class all_reports_page extends AppCompatActivity {
         ScannerConstants.USERID.clear();
         ScannerConstants.USER_ISSUE.clear();
         ScannerConstants.USER_REPORT.clear();
-        ScannerConstants.selectedImageBitmap.clear();
         ScannerConstants.selectedImageName.clear();
 
 
@@ -100,27 +99,13 @@ public class all_reports_page extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = response.getJSONArray("retrieved_data");
                     ScannerConstants.jsonArraySize=jsonArray.length();
-
-                    for(i=0;i<jsonArray.length();++i){
+                    if(jsonArray.length()>0){
+                    for(i=0;i<jsonArray.length();++i) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String userid=jsonObject.getString("id");
-                        String userissue=jsonObject.getString("issue");
-                        String userreport=jsonObject.getString("report");
-                        String userimagename=jsonObject.getString("image_name");
-                        String userimagestring=jsonObject.getString("image");
-
-                        //converting base_64 string of image to Bitmap
-                        try {
-                            if(stringToImage(userimagestring)==null){
-                                Toast.makeText(all_reports_page.this,"shit",Toast.LENGTH_LONG).show();
-                                //shit means string to image is not working
-                                //and im getting shit.....
-                            }
-                            userBitmap =  Bitmap.createScaledBitmap(stringToImage(userimagestring), 200, 200, false);
-                        }
-                        catch (Exception e){
-                            //Toast.makeText(all_reports_page.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                        }
+                        String userid = jsonObject.getString("id");
+                        String userissue = jsonObject.getString("issue");
+                        String userreport = jsonObject.getString("report");
+                        String userimagename = jsonObject.getString("image_name");
 
 
                         final LinearLayout innerlinearLayout = new LinearLayout(getApplicationContext());
@@ -130,7 +115,7 @@ public class all_reports_page extends AppCompatActivity {
                         );
                         innerlinearLayout.setLayoutParams(innerlayoutParams);
                         innerlinearLayout.setOrientation(LinearLayout.VERTICAL);
-                        innerlayoutParams.setMargins(40,40,40,40);
+                        innerlayoutParams.setMargins(40, 40, 40, 40);
                         linearLayout.addView(innerlinearLayout);
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
@@ -146,7 +131,7 @@ public class all_reports_page extends AppCompatActivity {
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                         );
 
-                        textviewparams.setMargins(15,15,15,15);
+                        textviewparams.setMargins(15, 15, 15, 15);
 
                         id.setLayoutParams(textviewparams);
                         id.setText(userid);
@@ -163,10 +148,9 @@ public class all_reports_page extends AppCompatActivity {
                         ScannerConstants.USERID.add(userid);//inserting each id in report arraylist declared in ScannerConstants
                         ScannerConstants.USER_ISSUE.add(userissue);//inserting each issue in report arraylist declared in ScannerConstants
                         ScannerConstants.USER_REPORT.add(userreport);//inserting each report in report arraylist declared in ScannerConstants
-                        ScannerConstants.selectedImageBitmap.add(userBitmap);
-                        ScannerConstants.selectedImageName.add(userimagename);
                         ScannerConstants.issue.add(userissue);//this line is just for members who will solve the issue...i need the issue separately
-                        //to identify the concerned person.
+                        ScannerConstants.selectedImageName.add(userimagename);
+
 
                         innerlinearLayout.addView(id);
                         innerlinearLayout.addView(issue);
@@ -175,10 +159,14 @@ public class all_reports_page extends AppCompatActivity {
                         innerlinearLayout.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                ScannerConstants.index=innerlinearLayout.getId();
+                                ScannerConstants.index = innerlinearLayout.getId();
                                 openFullReportPage();
                             }
                         });
+                    }
+                    }
+                    else{
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -187,17 +175,35 @@ public class all_reports_page extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(all_reports_page.this,"Check your internet connection",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(all_reports_page.this,"Check your internet connection",Toast.LENGTH_LONG).show();
+                final LinearLayout innerlinearLayout = new LinearLayout(getApplicationContext());
+                LinearLayout.LayoutParams innerlayoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                TextView message = new TextView(getApplicationContext());
+                LinearLayout.LayoutParams textviewparams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                innerlinearLayout.setLayoutParams(innerlayoutParams);
+                innerlinearLayout.setOrientation(LinearLayout.VERTICAL);
+                innerlayoutParams.setMargins(40, 60, 40, 40);
+                linearLayout.addView(innerlinearLayout);
+                innerlinearLayout.setBackgroundResource(R.drawable.textviewstyle);
+                message.setLayoutParams(textviewparams);
+                message.setText("There are no reports at this moment");
+                message.setTextColor(Color.WHITE);
+                message.setTextSize(30);
+                message.setAllCaps(false);
+                message.setPadding(10,10,10,10);
+                message.setGravity(Gravity.CENTER);
+
+                innerlinearLayout.addView(message);
             }
         });
         rq.add(jsonObjectRequest);
-    }
-    public Bitmap stringToImage(String stringImage){
-
-        byte[] decodedString = Base64.decode(stringImage, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-        return decodedByte;
     }
     public void openFullReportPage(){
         Intent intent = new Intent(this,fullreportpage.class);
