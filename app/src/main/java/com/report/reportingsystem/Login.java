@@ -24,7 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
@@ -107,17 +107,17 @@ public class login extends AppCompatActivity {
                         memberpage();
                     }
                     else{
-                        Toast.makeText(login.this,  "Username or Password is incorrect", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this,  "Username or Password is incorrect", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(login.this, "Username or Password is incorrect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Username or Password is incorrect", Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(com.report.reportingsystem.login.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -129,23 +129,23 @@ public class login extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(com.report.reportingsystem.login.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(Login.this).addToRequestQue(stringRequest);
 
     }
     public void signup(){
-        Intent intent = new Intent(this,signup.class);
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
     public void employeepage(){
-        Intent intent = new Intent(this, employeehomepage.class);
+        Intent intent = new Intent(this, EmployeeHomePage.class);
         startActivity(intent);
     }
     public void adminpage(){
-        Intent intent = new Intent(this, adminhomepage.class);
+        Intent intent = new Intent(this, AdminHomePage.class);
         startActivity(intent);
     }
     private void memberpage(){
-        Intent intent = new Intent(this,memberPage.class);
+        Intent intent = new Intent(this, MemberPage.class);
         startActivity(intent);
     }
 }

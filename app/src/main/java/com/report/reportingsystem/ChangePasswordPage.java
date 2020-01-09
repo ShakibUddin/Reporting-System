@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class change_password_page extends AppCompatActivity {
+public class ChangePasswordPage extends AppCompatActivity {
 
     private Button change;
     private EditText previous_password;
@@ -54,7 +54,7 @@ public class change_password_page extends AppCompatActivity {
                     confirm_new_password.setError("Confirm new password");
                 }
                 if(new_password.getError()!=null || previous_password.getError()!=null || confirm_new_password.getError()!=null){
-                    Toast.makeText(change_password_page.this,"Fill in the required fields",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChangePasswordPage.this,"Fill in the required fields",Toast.LENGTH_LONG).show();
                 }
                 else{
                     change_password_code();
@@ -73,7 +73,7 @@ public class change_password_page extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     String message = jsonObject.getString("message");
                     if(message.equals("1")){
-                        Toast.makeText(change_password_page.this, "Password Changed Successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordPage.this, "Password Changed Successfully", Toast.LENGTH_LONG).show();
                         try {
                             Thread.sleep(2000);
                             logout_account();
@@ -82,27 +82,27 @@ public class change_password_page extends AppCompatActivity {
                         }
                     }
                     else if(message.equals("2")){
-                        Toast.makeText(change_password_page.this, "Passwords don't match", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordPage.this, "Passwords don't match", Toast.LENGTH_LONG).show();
                     }
                     else if(message.equals("3")){
-                        Toast.makeText(change_password_page.this, "Please, Enter previous password correctly", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordPage.this, "Please, Enter previous password correctly", Toast.LENGTH_LONG).show();
                     }
                     else if(message.equals("-1")){
-                        Toast.makeText(change_password_page.this, "Passsword could not be changed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordPage.this, "Passsword could not be changed", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        Toast.makeText(change_password_page.this, "Error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordPage.this, "Error", Toast.LENGTH_LONG).show();
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(change_password_page.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChangePasswordPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(change_password_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChangePasswordPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -115,10 +115,10 @@ public class change_password_page extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(change_password_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(ChangePasswordPage.this).addToRequestQue(stringRequest);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class settings_page extends AppCompatActivity {
+public class SettingsPage extends AppCompatActivity {
 
     private Button change_username;
     private Button change_password;
@@ -59,13 +59,13 @@ public class settings_page extends AppCompatActivity {
         delete_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(settings_page.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsPage.this);
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("Do you really want to delete your account?");
                 alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(settings_page.this,"Thank You.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SettingsPage.this,"Thank You.",Toast.LENGTH_LONG).show();
                         delete_account_code();
                         logout_account();
                     }
@@ -87,7 +87,7 @@ public class settings_page extends AppCompatActivity {
         startActivity(intent);
     }
     public void change_password_page(){
-        Intent intent = new Intent(this,change_password_page.class);
+        Intent intent = new Intent(this, ChangePasswordPage.class);
         startActivity(intent);
     }
     public void delete_account_code(){
@@ -98,16 +98,16 @@ public class settings_page extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
-                    Toast.makeText(settings_page.this, Response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SettingsPage.this, Response, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(settings_page.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(SettingsPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(settings_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(SettingsPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -118,10 +118,10 @@ public class settings_page extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(settings_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(SettingsPage.this).addToRequestQue(stringRequest);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

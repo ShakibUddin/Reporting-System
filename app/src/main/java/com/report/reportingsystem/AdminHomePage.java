@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class adminhomepage extends AppCompatActivity {
+public class AdminHomePage extends AppCompatActivity {
 
     private TextView admin_home_user;
     private Button seeReports;
@@ -47,15 +46,15 @@ public class adminhomepage extends AppCompatActivity {
 
     }
     public void allreportpage(){
-        Intent intent = new Intent(this,all_reports_page.class);
+        Intent intent = new Intent(this, AllReportsPage.class);
         startActivity(intent);
     }
     public void member_signup_page(){
-        Intent intent = new Intent(this,member_signup.class);
+        Intent intent = new Intent(this, MemberSignup.class);
         startActivity(intent);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

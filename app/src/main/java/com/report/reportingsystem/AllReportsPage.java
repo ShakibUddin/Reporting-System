@@ -34,7 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class all_reports_page extends AppCompatActivity {
+public class AllReportsPage extends AppCompatActivity {
     private RequestQueue rq;
     private Bitmap userBitmap;
     private int i=0;
@@ -175,7 +175,7 @@ public class all_reports_page extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                    //Toast.makeText(all_reports_page.this,"Check your internet connection",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(AllReportsPage.this,"Check your internet connection",Toast.LENGTH_LONG).show();
                 final LinearLayout innerlinearLayout = new LinearLayout(getApplicationContext());
                 LinearLayout.LayoutParams innerlayoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,

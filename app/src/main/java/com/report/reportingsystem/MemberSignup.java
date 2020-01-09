@@ -2,7 +2,6 @@ package com.report.reportingsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -29,7 +28,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class member_signup extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MemberSignup extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText username;
     private EditText password;
@@ -108,13 +107,13 @@ public class member_signup extends AppCompatActivity implements AdapterView.OnIt
                     post.setPopupBackgroundResource(R.drawable.spinner_background);
                 }
                 if(username.getError()!=null || password.getError()!=null || ConfirmPassword.getError()!=null || inputpost.length()==0|| inputpost.equals("Post")){
-                    Toast.makeText(member_signup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MemberSignup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
                 }
                 else if(username.getError()==null && inputpost.length()>0 && inputPassWord.equals(inputConfirmPassWord)){
                     uploadData();
                 }
                 else{
-                    Toast.makeText(member_signup.this, passwordMessage, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MemberSignup.this, passwordMessage, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -129,22 +128,22 @@ public class member_signup extends AppCompatActivity implements AdapterView.OnIt
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     if(success.equals("1")){
-                        Toast.makeText(member_signup.this, "Registration Completed.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MemberSignup.this, "Registration Completed.", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        Toast.makeText(member_signup.this, "Username already exists in database", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MemberSignup.this, "Username already exists in database", Toast.LENGTH_LONG).show();
 
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(member_signup.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MemberSignup.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(member_signup.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(MemberSignup.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -159,7 +158,7 @@ public class member_signup extends AppCompatActivity implements AdapterView.OnIt
                 return params;
             }
         };
-        MySingleton.getInstance(member_signup.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(MemberSignup.this).addToRequestQue(stringRequest);
     }
 
     @Override

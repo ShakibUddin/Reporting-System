@@ -118,7 +118,7 @@ public class change_username_page extends AppCompatActivity {
         MySingleton.getInstance(change_username_page.this).addToRequestQue(stringRequest);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

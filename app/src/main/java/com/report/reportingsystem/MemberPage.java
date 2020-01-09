@@ -13,9 +13,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class memberPage extends AppCompatActivity {
+public class MemberPage extends AppCompatActivity {
 
     private TextView post;
     private Button task;
@@ -85,16 +83,16 @@ public class memberPage extends AppCompatActivity {
 
     }
     public void open_settings_page(){
-        Intent intent = new Intent(this,settings_page.class);
+        Intent intent = new Intent(this, SettingsPage.class);
         startActivity(intent);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
     public void open_task_page(){
-        Intent intent = new Intent(this,task_page.class);
+        Intent intent = new Intent(this, TaskPage.class);
         startActivity(intent);
     }
     @Override
@@ -108,17 +106,17 @@ public class memberPage extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
-                    //Toast.makeText(memberPage.this,Response,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MemberPage.this,Response,Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(memberPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MemberPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(memberPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(MemberPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -128,6 +126,6 @@ public class memberPage extends AppCompatActivity {
             }
 
         };
-        MySingleton.getInstance(memberPage.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(MemberPage.this).addToRequestQue(stringRequest);
     }
 }

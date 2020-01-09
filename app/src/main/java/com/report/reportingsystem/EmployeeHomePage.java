@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class employeehomepage extends AppCompatActivity {
+public class EmployeeHomePage extends AppCompatActivity {
 
     private TextView username;
     private Button submit_report;
@@ -64,23 +64,23 @@ public class employeehomepage extends AppCompatActivity {
 
     }
     public void open_report_submission(){
-        Intent intent = new Intent(this,report_submission_page.class);
+        Intent intent = new Intent(this, ReportSubmissionPage.class);
         startActivity(intent);
     }
     public void open_under_review_page(){
-        Intent intent = new Intent(this, under_review_page.class);
+        Intent intent = new Intent(this, UnderReviewPage.class);
         startActivity(intent);
     }
     public void open_solved_issue_page(){
-        Intent intent = new Intent(this, solved_issue_page.class);
+        Intent intent = new Intent(this, SolvedIssuePage.class);
         startActivity(intent);
     }
     public void open_settings_page(){
-        Intent intent = new Intent(this,settings_page.class);
+        Intent intent = new Intent(this, SettingsPage.class);
         startActivity(intent);
     }
     public void logout_account(){
-        Intent intent = new Intent(getApplicationContext(), login.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

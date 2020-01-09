@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,16 +19,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class under_review_page extends AppCompatActivity {
+public class SolvedIssuePage extends AppCompatActivity {
 
     private TextView status;
     private int i=0;
-    public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/fetch_under_review.php";
+    public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/fetch_solved_issue.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_report_status_page);
         ScrollView scroll = new ScrollView(this);
         scroll.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -57,7 +55,7 @@ public class under_review_page extends AppCompatActivity {
         statustextviewparams.width=600;
         statustextviewparams.gravity= Gravity.CENTER;
         status.setLayoutParams(statustextviewparams);
-        status.setText("Under Review");
+        status.setText("Solved Issues");
         status.setTextColor(Color.WHITE);
         status.setTextSize(30);
         status.setPadding(10,10,10,10);
@@ -134,8 +132,6 @@ public class under_review_page extends AppCompatActivity {
                         innerlinearLayout.addView(id);
                         innerlinearLayout.addView(issue);
                         innerlinearLayout.addView(report);
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -144,10 +140,10 @@ public class under_review_page extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(under_review_page.this,"Check your internet connection",Toast.LENGTH_LONG).show();
+                Toast.makeText(SolvedIssuePage.this,"Check your internet connection",Toast.LENGTH_LONG).show();
             }
         });
 
-        MySingleton.getInstance(under_review_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(SolvedIssuePage.this).addToRequestQue(stringRequest);
     }
 }

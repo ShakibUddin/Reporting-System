@@ -3,10 +3,8 @@ package com.report.reportingsystem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +13,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -23,7 +20,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Gallery;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,14 +34,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-public class report_submission_page extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ReportSubmissionPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText id;
     private EditText username;
@@ -87,14 +85,14 @@ public class report_submission_page extends AppCompatActivity implements Adapter
         issue.setAdapter(Adapter);
         issue.setOnItemSelectedListener(this);
 
-        username.setText(ScannerConstants.user);
+        username.setText(ScannerConstants.user.toUpperCase());
         id.setText(ScannerConstants.id);
         id.setEnabled(false);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(report_submission_page.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ReportSubmissionPage.this);
 
                 // Set a title for alert dialog
                 builder.setTitle("");
@@ -136,7 +134,7 @@ public class report_submission_page extends AppCompatActivity implements Adapter
                 ScannerConstants.image= BitmapFactory.decodeResource(getApplicationContext().getResources(),
                         R.drawable.default_image);
                 ScannerConstants.image_name="default.png";
-                Toast.makeText(report_submission_page.this,"Image cleared",Toast.LENGTH_LONG).show();
+                Toast.makeText(ReportSubmissionPage.this,"Image cleared",Toast.LENGTH_LONG).show();
             }
         });
         submit.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +164,7 @@ public class report_submission_page extends AppCompatActivity implements Adapter
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
-                    Toast.makeText(report_submission_page.this, Response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ReportSubmissionPage.this, Response, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -174,7 +172,7 @@ public class report_submission_page extends AppCompatActivity implements Adapter
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(report_submission_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(ReportSubmissionPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -188,7 +186,7 @@ public class report_submission_page extends AppCompatActivity implements Adapter
                 return params;
             }
         };
-        MySingleton.getInstance(report_submission_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(ReportSubmissionPage.this).addToRequestQue(stringRequest);
     }
     public void openGallery(){
         Intent intent = new Intent();
@@ -197,11 +195,11 @@ public class report_submission_page extends AppCompatActivity implements Adapter
         startActivityForResult(Intent.createChooser(intent,"Select File"),SELECT_FILE);
     }
     public void openCamera(){
-        if(ContextCompat.checkSelfPermission(report_submission_page.this,
+        if(ContextCompat.checkSelfPermission(ReportSubmissionPage.this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED)
         {
-            Toast.makeText(report_submission_page.this,"Provide camera access from your settings",Toast.LENGTH_LONG).show();
+            Toast.makeText(ReportSubmissionPage.this,"Provide camera access from your settings",Toast.LENGTH_LONG).show();
         }
         else{
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //IMAGE CAPTURE CODE
@@ -220,7 +218,7 @@ public class report_submission_page extends AppCompatActivity implements Adapter
                 Uri uri = data.getData();
                 try {
                     ScannerConstants.image=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
-                    Toast.makeText(report_submission_page.this,"Image selection successful",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReportSubmissionPage.this,"Image selection successful",Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -228,9 +226,17 @@ public class report_submission_page extends AppCompatActivity implements Adapter
             else if(request_code==REQUEST_IMAGE_CAPTURE){
                 Bundle extras = data.getExtras();
                 ScannerConstants.image =(Bitmap) extras.get("data");
-                Toast.makeText(report_submission_page.this,"Image capture successful",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReportSubmissionPage.this,"Image capture successful",Toast.LENGTH_SHORT).show();
             }
-            ScannerConstants.image_name=timeStamp + ".png";
+            MessageDigest md = null;
+            try {
+                md = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            Long tsLong = System.currentTimeMillis();
+            String ts = tsLong.toString();
+            ScannerConstants.image_name= ts+ ".png";
         }
 
     }

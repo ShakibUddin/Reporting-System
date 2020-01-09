@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class signup extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private EditText id;
@@ -93,7 +93,7 @@ public class signup extends AppCompatActivity {
                     ConfirmPassword.setError("Confirm your password");
                 }
                 if(username.getError()!=null || id.getError()!=null || password.getError()!=null || ConfirmPassword.getError()!=null){
-                    Toast.makeText(signup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
                 }
                 if(username.getError()==null && id.getError()==null && inputPassWord.equals(inputConfirmPassWord)){
                     checkData();
@@ -101,13 +101,13 @@ public class signup extends AppCompatActivity {
                     goToLoginPage();
                 }
                 else{
-                    Toast.makeText(signup.this, passwordMessage, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, passwordMessage, Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
     public void goToLoginPage(){
-        Intent intent = new Intent(this, login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
     private void checkData(){
@@ -122,22 +122,22 @@ public class signup extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     if(success.equals("1")){
-                        Toast.makeText(signup.this, "Registration Completed. Please Login", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp.this, "Registration Completed. Please Login", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        Toast.makeText(signup.this, "Username or ID already exists in database", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp.this, "Username or ID already exists in database", Toast.LENGTH_LONG).show();
 
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(signup.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(signup.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -152,7 +152,7 @@ public class signup extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(signup.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(SignUp.this).addToRequestQue(stringRequest);
     }
 }
 

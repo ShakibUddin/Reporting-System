@@ -3,9 +3,12 @@ package com.report.reportingsystem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class full_task_page extends AppCompatActivity {
+public class FullTaskPage extends AppCompatActivity {
 
     private TextView full_task;
     private Button task_completed;
@@ -30,6 +34,9 @@ public class full_task_page extends AppCompatActivity {
     private String current_report="";
     private String task_to_delete_query = "";
     private String issue_to_delete_query = "";
+    private ImageView taskimage;
+    private String current_image_name;
+    private String image_path_in_server="";
     public static final String TASK_REMOVE_URL = "http://" + ScannerConstants.ip + "/ReportingSystem/task_remove.php";
     public static final String UNDER_REVIEW_ISSUE_REMOVE_URL = "http://" + ScannerConstants.ip + "/ReportingSystem/under_review_issue_remove.php";
     public static final String SOLVED_ISSUE_UPLOAD_URL = "http://" + ScannerConstants.ip + "/ReportingSystem/upload_in_solved_issue.php";
@@ -40,15 +47,27 @@ public class full_task_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_task_page);
 
-        full_task=(TextView)findViewById(R.id.full_task_id);
+        full_task=(TextView)findViewById(R.id.full_task_reportid2);
         task_completed=(Button)findViewById(R.id.task_completed_button);
+        taskimage=(ImageView)findViewById(R.id.imagetask);
 
         current_id=ScannerConstants.USERID.get(ScannerConstants.index);
         current_issue=ScannerConstants.USER_ISSUE.get(ScannerConstants.index);
         current_report=ScannerConstants.USER_REPORT.get(ScannerConstants.index);
+        current_image_name=ScannerConstants.selectedImageName.get(ScannerConstants.index);
+        image_path_in_server="http://"+ScannerConstants.ip+"/ReportingSystem/images/"+current_image_name+".png";
+
+        if(ScannerConstants.selectedImageName.get(ScannerConstants.index).equals("default")){
+            Bitmap defaultimage = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.drawable.default_image);
+            taskimage.setImageBitmap(defaultimage);
+        }
+        else{
+            //Toast.makeText(FullTaskPage.this,current_image_name,Toast.LENGTH_LONG).show();
+            stringToBitmap(image_path_in_server);
+        }
 
         full_task.setText("ID : "+current_id+"\n\nIssue : "+current_issue+"\n\nReport : "+current_report);
-
         task_completed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,16 +86,16 @@ public class full_task_page extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
-                    Toast.makeText(full_task_page.this, Response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(FullTaskPage.this, Response, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(full_task_page.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(FullTaskPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(full_task_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(FullTaskPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -85,7 +104,7 @@ public class full_task_page extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(full_task_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(FullTaskPage.this).addToRequestQue(stringRequest);
     }
 
     public void remove_issue_from_under_review_table() {
@@ -96,16 +115,16 @@ public class full_task_page extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
-                    //Toast.makeText(task_page.this, Response, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(TaskPage.this, Response, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(full_task_page.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(FullTaskPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(full_task_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(FullTaskPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -114,7 +133,7 @@ public class full_task_page extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(full_task_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(FullTaskPage.this).addToRequestQue(stringRequest);
     }
 
     public void add_issue_in_solved_issue_table() {
@@ -134,7 +153,7 @@ public class full_task_page extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(full_task_page.this, "Check your internet connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(FullTaskPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -146,10 +165,13 @@ public class full_task_page extends AppCompatActivity {
                 return params;
             }
         };
-        MySingleton.getInstance(full_task_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(FullTaskPage.this).addToRequestQue(stringRequest);
+    }
+    public void stringToBitmap(String url) {
+        Picasso.get().load(url).into(taskimage);
     }
     public void clear_previous_page(){
-        Intent intent = new Intent(getApplicationContext(), memberPage.class);
+        Intent intent = new Intent(getApplicationContext(), MemberPage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -2,6 +2,7 @@ package com.report.reportingsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,15 +21,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class solved_issue_page extends AppCompatActivity {
+public class TaskPage extends AppCompatActivity {
 
-    private TextView status;
-    private int i=0;
-    public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/fetch_solved_issue.php";
+    private int i = 0;
+    public static String TASK_FETCH_URL = "http://" + ScannerConstants.ip + "/ReportingSystem/fetch_task.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_task_page);
+
         ScrollView scroll = new ScrollView(this);
         scroll.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -46,42 +49,56 @@ public class solved_issue_page extends AppCompatActivity {
         linearLayout.setBackgroundColor(Color.WHITE);
         setContentView(scroll);
 
-        TextView status = new TextView(getApplicationContext());
+        TextView user = new TextView(getApplicationContext());
 
-        LinearLayout.LayoutParams statustextviewparams = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams usertextviewparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        statustextviewparams.width=600;
-        statustextviewparams.gravity= Gravity.CENTER;
-        status.setLayoutParams(statustextviewparams);
-        status.setText("Solved Issues");
-        status.setTextColor(Color.WHITE);
-        status.setTextSize(30);
-        status.setPadding(10,10,10,10);
-        status.setAllCaps(false);
-        status.setBackgroundResource(R.drawable.textviewstyle);
-        statustextviewparams.setMargins(0,100,0,10);
-        status.setGravity(Gravity.CENTER);
-        linearLayout.addView(status);
+        usertextviewparams.width = 600;
+        usertextviewparams.gravity = Gravity.CENTER;
+        user.setLayoutParams(usertextviewparams);
+        user.setText("Tasks");
+        user.setTextColor(Color.WHITE);
+        user.setTextSize(35);
+        user.setPadding(10, 10, 10, 10);
+        user.setAllCaps(false);
+        user.setBackgroundResource(R.drawable.textviewstyle);
+        usertextviewparams.setMargins(0, 100, 0, 10);
+        user.setGravity(Gravity.CENTER);
+        linearLayout.addView(user);
 
         scroll.addView(linearLayout);
 
+        ScannerConstants.USERID.clear();
+        ScannerConstants.USER_ISSUE.clear();
+        ScannerConstants.USER_REPORT.clear();
+        ScannerConstants.selectedImageName.clear();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, UPLOAD_URL, new Response.Listener<String>() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, TASK_FETCH_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonobject = new JSONObject(response);
-                    JSONArray jsonArray = jsonobject.getJSONArray("under_review_data");
-                    ScannerConstants.jsonArraySize=jsonArray.length();
+                    JSONArray jsonArray = jsonobject.getJSONArray("retrieved_data");
+                    ScannerConstants.jsonArraySize = jsonArray.length();
 
-                    for(i=0;i<jsonArray.length();++i){
+                    for (i = 0; i < jsonArray.length(); ++i) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String userid=jsonObject.getString("id");
-                        String userissue=jsonObject.getString("issue");
-                        String userreport=jsonObject.getString("report");
+
+                        final String userid = jsonObject.getString("id");
+                        final String userissue = jsonObject.getString("issue");
+                        final String userreport = jsonObject.getString("report");
+                        final String userimagename = jsonObject.getString("image_name");
+
+                        ScannerConstants.USERID.add(userid);//inserting each id in report arraylist declared in ScannerConstants
+                        ScannerConstants.USER_ISSUE.add(userissue);//inserting each issue in report arraylist declared in ScannerConstants
+                        ScannerConstants.USER_REPORT.add(userreport);//inserting each report in report arraylist declared in ScannerConstants
+                        ScannerConstants.selectedImageName.add(userimagename);
+
+                        ScannerConstants.task_to_remove.add(userreport);
 
                         final LinearLayout innerlinearLayout = new LinearLayout(getApplicationContext());
                         LinearLayout.LayoutParams innerlayoutParams = new LinearLayout.LayoutParams(
@@ -90,7 +107,7 @@ public class solved_issue_page extends AppCompatActivity {
                         );
                         innerlinearLayout.setLayoutParams(innerlayoutParams);
                         innerlinearLayout.setOrientation(LinearLayout.VERTICAL);
-                        innerlayoutParams.setMargins(40,40,40,40);
+                        innerlayoutParams.setMargins(40, 40, 40, 40);
                         linearLayout.addView(innerlinearLayout);
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
@@ -107,7 +124,7 @@ public class solved_issue_page extends AppCompatActivity {
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                         );
 
-                        textviewparams.setMargins(15,15,15,15);
+                        textviewparams.setMargins(15, 15, 15, 15);
 
                         id.setLayoutParams(textviewparams);
                         id.setText(userid);
@@ -115,24 +132,23 @@ public class solved_issue_page extends AppCompatActivity {
                         id.setTextSize(25);
                         id.setAllCaps(false);
 
-
-
                         issue.setLayoutParams(textviewparams);
                         issue.setText(userissue);
                         issue.setTextColor(Color.WHITE);
                         issue.setTextSize(25);
                         issue.setAllCaps(false);
 
-                        report.setLayoutParams(textviewparams);
-                        report.setText(userreport);
-                        report.setTextColor(Color.WHITE);
-                        report.setTextSize(25);
-                        report.setAllCaps(false);
-
-
                         innerlinearLayout.addView(id);
                         innerlinearLayout.addView(issue);
-                        innerlinearLayout.addView(report);
+
+                        innerlinearLayout.setClickable(true);
+                        innerlinearLayout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ScannerConstants.index = innerlinearLayout.getId();
+                                open_full_task_page();
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -141,10 +157,15 @@ public class solved_issue_page extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(solved_issue_page.this,"Check your internet connection",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TaskPage.this,"Check your internet connection",Toast.LENGTH_LONG).show();
             }
         });
 
-        MySingleton.getInstance(solved_issue_page.this).addToRequestQue(stringRequest);
+        MySingleton.getInstance(TaskPage.this).addToRequestQue(stringRequest);
+    }
+    public void open_full_task_page(){
+        Intent intent = new Intent(this, FullTaskPage.class);
+        startActivity(intent);
     }
 }
+

@@ -18,37 +18,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".change_password_page"></activity>
+        <activity android:name=".ChangePasswordPage"></activity>
         <activity android:name=".change_username_page" />
         <activity
-            android:name=".full_task_page"
+            android:name=".FullTaskPage"
             android:noHistory="true" />
-        <activity android:name=".solved_issue_page" />
+        <activity android:name=".SolvedIssuePage" />
         <activity
-            android:name=".task_page"
+            android:name=".TaskPage"
             android:noHistory="true" />
-        <activity android:name=".settings_page" />
-        <activity android:name=".under_review_page" />
-        <activity android:name=".employeehomepage" />
-        <activity android:name=".adminhomepage" />
-        <activity android:name=".memberPage" />
-        <activity android:name=".member_signup" />
+        <activity android:name=".SettingsPage" />
+        <activity android:name=".UnderReviewPage" />
+        <activity android:name=".EmployeeHomePage" />
+        <activity android:name=".AdminHomePage" />
+        <activity android:name=".MemberPage" />
+        <activity android:name=".MemberSignup" />
         <activity
             android:name=".fullreportpage"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".all_reports_page"
+            android:name=".AllReportsPage"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".report_submission_page"
+            android:name=".ReportSubmissionPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".signup"
+            android:name=".SignUp"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login"
+            android:name=".Login"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

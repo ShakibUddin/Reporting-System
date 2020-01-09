@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,9 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.SecureCacheResponse;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +41,7 @@ public class fullreportpage extends AppCompatActivity {
     public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/uploadin_under_review.php";
     public static String TASK_UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/task.php";
     public static final String DELETE_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/delete_report.php";
-    private static String image_path_in_server="http://"+ScannerConstants.ip+"/ReportingSystem/images/"+ScannerConstants.selectedImageName.get(ScannerConstants.index)+".png";
+    private static String image_path_in_server="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +57,7 @@ public class fullreportpage extends AppCompatActivity {
         current_issue=ScannerConstants.USER_ISSUE.get(ScannerConstants.index);
         current_report=ScannerConstants.USER_REPORT.get(ScannerConstants.index);
         current_image_name=ScannerConstants.selectedImageName.get(ScannerConstants.index);
+        image_path_in_server="http://"+ScannerConstants.ip+"/ReportingSystem/images/"+current_image_name+".png";
 
         fullreport.setText("ID : "+current_id+"\n\nIssue : "+current_issue+"\n\nReport : "+current_report);
 
@@ -194,6 +189,7 @@ public class fullreportpage extends AppCompatActivity {
                 params.put("id", current_id);
                 params.put("issue", current_issue);
                 params.put("report", current_report);
+                params.put("image_name", current_image_name);
 
                 return params;
             }
@@ -204,11 +200,11 @@ public class fullreportpage extends AppCompatActivity {
         Picasso.get().load(url).into(seeimage);
     }
     public void admin_page(){
-        Intent intent = new Intent(this,adminhomepage.class);
+        Intent intent = new Intent(this, AdminHomePage.class);
         startActivity(intent);
     }
     public void clear_previous_page(){
-        Intent intent = new Intent(getApplicationContext(), all_reports_page.class);
+        Intent intent = new Intent(getApplicationContext(), AllReportsPage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

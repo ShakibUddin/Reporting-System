@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/admin_user_back"
     android:orientation="vertical"
-    tools:context=".memberPage">
+    tools:context=".MemberPage">
 
 
     <TextView

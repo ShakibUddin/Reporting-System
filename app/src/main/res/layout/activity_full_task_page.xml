@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".full_task_page">
+    tools:context=".FullTaskPage">
 
 
     <TextView
@@ -26,19 +26,32 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:padding="5dp"
-        android:layout_margin="15dp">
-        <TextView
-            android:id="@+id/full_task_id"
+        android:layout_margin="15dp"
+        android:background="@drawable/screenborder">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/textviewstyle"
-            android:padding="10dp"
-            android:text="ID : 1221\n\nIssue : Elevator\n\nReport : Elevator is not working."
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imagetask"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/cat"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"/>
+            <TextView
+                android:id="@+id/full_task_reportid2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/textviewstyle"
+                android:padding="10dp"
+                android:text="ID : 1221\n\nIssue : Room\n\nReport : There is a cat in my room."
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+        </LinearLayout>
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
