@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/admin_user_back"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".MemberPage">
 
@@ -16,8 +16,10 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:text="Moderator"
+        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
-        android:textColor="#9E00F3"
+        android:textColor="#ffffff"
+        android:background="@drawable/submitbutton"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,12 +30,16 @@
 
     <Button
         android:id="@+id/task_button"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/admin_or_user_button_style"
         android:text="Tasks"
+        android:textSize="25sp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
         android:textColor="#ffffff"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -43,33 +49,41 @@
 
     <Button
         android:id="@+id/member_settings_button"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/admin_or_user_button_style"
+        android:padding="10dp"
+        android:fontFamily="@font/rockwell"
         android:text="Settings"
         android:textAllCaps="false"
         android:textColor="#ffffff"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintVertical_bias="0.454" />
 
     <Button
         android:id="@+id/member_logout"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/admin_or_user_button_style"
+        android:padding="10dp"
         android:text="Logout"
+        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
         android:textColor="#ffffff"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.573" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

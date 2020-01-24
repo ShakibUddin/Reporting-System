@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ReportingSystem</string>
+    <string-array name="issues">
+        <item>Room</item>
+        <item>Lab</item>
+        <item>Electronics</item>
+        <item>Library</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="post">
+        <item></item>
+        <item>Librarian</item>
+        <item>Electrician</item>
+        <item>Lab Coordinator</item>
+        <item>Room Coordinator</item>
+        <item>Moderator</item>
+    </string-array>
 </resources>
+

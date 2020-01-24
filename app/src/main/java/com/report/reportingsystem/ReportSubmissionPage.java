@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,9 +51,9 @@ public class ReportSubmissionPage extends AppCompatActivity implements AdapterVi
     private Spinner issue;
     private EditText report;
     private EditText imagename;
-    private Button image;
+    private ImageButton image;
     private Button submit;
-    private Button refresh;
+    private ImageButton refresh;
     private String inputId="";
     private String inputReport="";
     private String inputIssue="";
@@ -73,16 +74,20 @@ public class ReportSubmissionPage extends AppCompatActivity implements AdapterVi
         issue=(Spinner) findViewById(R.id.issueid);
         report=(EditText)findViewById(R.id.reportid);
         submit=(Button)findViewById(R.id.submitbutton);
-        refresh=(Button)findViewById(R.id.refreshbutton);
-        image=(Button)findViewById(R.id.imagebutton);
+        refresh=(ImageButton)findViewById(R.id.refreshbutton);
+        image=(ImageButton)findViewById(R.id.imagebutton);
 
         ScannerConstants.image= BitmapFactory.decodeResource(getApplicationContext().getResources(),
                 R.drawable.default_image);
         ScannerConstants.image_name="default.png";
 
-        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, issues);
-        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        issue.setAdapter(Adapter);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.issues,
+                R.layout.color_spinner_layout
+        );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+        issue.setAdapter(adapter);
         issue.setOnItemSelectedListener(this);
 
         username.setText(ScannerConstants.user.toUpperCase());

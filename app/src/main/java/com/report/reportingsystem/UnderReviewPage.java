@@ -43,7 +43,8 @@ public class UnderReviewPage extends AppCompatActivity {
         );
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundColor(Color.WHITE);
+        linearLayout.setBackgroundResource(R.color.background);
+        scroll.setBackgroundResource(R.color.background);
         setContentView(scroll);
 
         TextView status = new TextView(getApplicationContext());
@@ -61,7 +62,7 @@ public class UnderReviewPage extends AppCompatActivity {
         status.setTextSize(30);
         status.setPadding(10,10,10,10);
         status.setAllCaps(false);
-        status.setBackgroundResource(R.drawable.textviewstyle);
+        status.setBackgroundResource(R.drawable.submitbutton);
         statustextviewparams.setMargins(0,100,0,10);
         status.setGravity(Gravity.CENTER);
         linearLayout.addView(status);
@@ -95,7 +96,7 @@ public class UnderReviewPage extends AppCompatActivity {
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
 
-                        innerlinearLayout.setBackgroundResource(R.drawable.textviewstyle);
+                        innerlinearLayout.setBackgroundResource(R.drawable.submitbutton);
 
                         TextView id = new TextView(getApplicationContext());
                         TextView issue = new TextView(getApplicationContext());

@@ -42,7 +42,7 @@ public class MemberSignup extends AppCompatActivity implements AdapterView.OnIte
     private String inputPassWord;
     private String inputConfirmPassWord;
     private String passwordMessage="Password does not match.";;
-    private LinkedList<String> members=new LinkedList<String>();
+    private int check=0;
     public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/signupAPI.php";
 
     @Override
@@ -58,16 +58,14 @@ public class MemberSignup extends AppCompatActivity implements AdapterView.OnIte
         viewPassword=(Switch)findViewById(R.id.memberviewpassid);
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         ConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        members.add("Post");//if inputpost==post then show error
-        members.add("Librarian");//for library issues
-        members.add("Electrician");//for electric issues
-        members.add("Lab Coordinator");//for lab issues
-        members.add("Room Coordinator");//for room issues
-        members.add("Moderator");//for other issues
-        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, members);
-        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        post.setAdapter(Adapter);
-        post.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.post,
+                R.layout.color_spinner_layout
+        );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+        post.setAdapter(adapter);
+        //post.setOnItemSelectedListener(this);
         viewPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -98,13 +96,12 @@ public class MemberSignup extends AppCompatActivity implements AdapterView.OnIte
                 if(inputConfirmPassWord.length()==0){
                     ConfirmPassword.setError("Confirm your password");
                 }
-                if(inputpost.equals("") || inputpost.equals("Post")){
-                    post.setBackgroundColor(Color.RED);
-                    post.setPopupBackgroundResource(R.drawable.spinner_error);
+                if(inputpost.equals("")){
+                    Toast.makeText(MemberSignup.this,"Select post",Toast.LENGTH_LONG).show();
                 }
                 if(inputpost.length()>0 && !inputpost.equals("Post")){
-                    post.setBackgroundColor(Color.GREEN);
-                    post.setPopupBackgroundResource(R.drawable.spinner_background);
+                    post.setBackgroundResource(R.drawable.submitbutton);
+                    post.setPopupBackgroundResource(R.drawable.submitbutton);
                 }
                 if(username.getError()!=null || password.getError()!=null || ConfirmPassword.getError()!=null || inputpost.length()==0|| inputpost.equals("Post")){
                     Toast.makeText(MemberSignup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();
@@ -161,12 +158,12 @@ public class MemberSignup extends AppCompatActivity implements AdapterView.OnIte
         MySingleton.getInstance(MemberSignup.this).addToRequestQue(stringRequest);
     }
 
-    @Override
+
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     }
 
-    @Override
+
     public void onNothingSelected(AdapterView<?> parent) {
 
     }

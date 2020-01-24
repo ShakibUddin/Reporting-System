@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup_background"
+    android:background="@color/background"
     tools:context=".MemberSignup">
 
 
     <Spinner
         android:id="@+id/memberpostid"
-        android:layout_width="180dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -18,84 +18,94 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:padding="8dp"
+        android:popupBackground="@drawable/submitbutton"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="30sp"
-        android:background="#0DF800"
-        android:popupBackground="@drawable/spinner_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.348"
+        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.426" />
 
     <Button
         android:id="@+id/memberbuttonsignup"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/signupbutton"
+        android:background="@drawable/submitbutton"
+        android:padding="10dp"
         android:text="Signup"
         android:textAllCaps="false"
         android:textColor="#ffffff"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.901" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/memberusernameid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
-        android:hint="Username"
+        android:background="@drawable/employee_page_edittext"
+        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
+        app:layout_constraintVertical_bias="0.272" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/memberconfirmpasswordid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
-        android:hint="Confirm Password"
+        android:layout_margin="10dp"
+        android:background="@drawable/employee_page_edittext"
+        android:fontFamily="@font/rockwell"
+        android:padding="10dp"
         android:textAllCaps="false"
         android:textColor="#000000"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.717" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/memberpasswordid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
-        android:hint="Password"
+        android:background="@drawable/employee_page_edittext"
+        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:layout_margin="10dp"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.574" />
 
     <Switch
         android:id="@+id/memberviewpassid"
@@ -107,42 +117,98 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/rockwell"
         android:text="show"
-        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675" />
+        app:layout_constraintVertical_bias="0.795" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/submitbutton"
+        android:fontFamily="@font/rockwell"
+        android:padding="10dp"
         android:text="Registration"
         android:textAllCaps="false"
-        android:textColor="#0DF800"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintVertical_bias="0.062" />
 
     <TextView
         android:id="@+id/textViewad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post"
+        android:fontFamily="@font/rockwell"
+        android:text="Post :"
         android:textAllCaps="false"
-        android:textColor="#0DF800"
-        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.364" />
+
+    <TextView
+        android:id="@+id/textViewadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rockwell"
+        android:text="Confirm Password :"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.642" />
+
+    <TextView
+        android:id="@+id/textViewadas3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rockwell"
+        android:text="Password :"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/textViewadas2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rockwell"
+        android:text="Username :"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.211" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

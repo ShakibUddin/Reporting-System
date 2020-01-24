@@ -27,7 +27,7 @@ public class MemberPage extends AppCompatActivity {
     private Button task;
     private Button settings;
     private Button logout;
-    private String issue_for_this_member="";
+
     private String task_sql="";
     public static String issue_URL ="http://"+ScannerConstants.ip+"/ReportingSystem/issue.php";
 
@@ -44,26 +44,25 @@ public class MemberPage extends AppCompatActivity {
         post.setText(ScannerConstants.user.toUpperCase());
 
         if(ScannerConstants.member_post.equals("Moderator")){
-            issue_for_this_member="Other";
+            ScannerConstants.issue_for_this_member="Other";
         }
         else if(ScannerConstants.member_post.equals("Electrician")){
-            issue_for_this_member="Electronics";
+            ScannerConstants.issue_for_this_member="Electronics";
         }
         else if(ScannerConstants.member_post.equals("Librarian")){
-            issue_for_this_member="Library";
+            ScannerConstants.issue_for_this_member="Library";
         }
         else if(ScannerConstants.member_post.equals("Room Coordinator")){
-            issue_for_this_member="Room";
+            ScannerConstants.issue_for_this_member="Room";
         }
         else if(ScannerConstants.member_post.equals("Lab Coordinator")){
-            issue_for_this_member="Lab";
+            ScannerConstants.issue_for_this_member="Lab";
         }
 
 
         task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send_task_sql_to_php();
                 open_task_page();
             }
         });
@@ -98,34 +97,5 @@ public class MemberPage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(false);
-    }
-    public void send_task_sql_to_php(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, issue_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String Response = jsonObject.getString("response");
-                    //Toast.makeText(MemberPage.this,Response,Toast.LENGTH_LONG).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(MemberPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MemberPage.this, "Check your internet connection", Toast.LENGTH_LONG).show();
-            }
-        }) {
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("issue",issue_for_this_member);
-                return params;
-            }
-
-        };
-        MySingleton.getInstance(MemberPage.this).addToRequestQue(stringRequest);
     }
 }

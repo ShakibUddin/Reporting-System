@@ -2,6 +2,7 @@ package com.report.reportingsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.AuthenticatorException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TaskPage extends AppCompatActivity {
 
@@ -46,7 +50,8 @@ public class TaskPage extends AppCompatActivity {
         );
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundColor(Color.WHITE);
+        linearLayout.setBackgroundResource(R.color.background);
+        scroll.setBackgroundResource(R.color.background);
         setContentView(scroll);
 
         TextView user = new TextView(getApplicationContext());
@@ -64,7 +69,7 @@ public class TaskPage extends AppCompatActivity {
         user.setTextSize(35);
         user.setPadding(10, 10, 10, 10);
         user.setAllCaps(false);
-        user.setBackgroundResource(R.drawable.textviewstyle);
+        user.setBackgroundResource(R.drawable.submitbutton);
         usertextviewparams.setMargins(0, 100, 0, 10);
         user.setGravity(Gravity.CENTER);
         linearLayout.addView(user);
@@ -77,7 +82,7 @@ public class TaskPage extends AppCompatActivity {
         ScannerConstants.selectedImageName.clear();
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, TASK_FETCH_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, TASK_FETCH_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -112,7 +117,7 @@ public class TaskPage extends AppCompatActivity {
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
 
-                        innerlinearLayout.setBackgroundResource(R.drawable.textviewstyle);
+                        innerlinearLayout.setBackgroundResource(R.drawable.submitbutton);
 
                         TextView id = new TextView(getApplicationContext());
                         TextView issue = new TextView(getApplicationContext());
@@ -159,7 +164,14 @@ public class TaskPage extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                     Toast.makeText(TaskPage.this,"Check your internet connection",Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("issue", ScannerConstants.issue_for_this_member);
+
+                return params;
+            }};
 
         MySingleton.getInstance(TaskPage.this).addToRequestQue(stringRequest);
     }

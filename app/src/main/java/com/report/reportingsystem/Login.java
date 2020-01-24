@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     private String inputUserName="";
     private String inputPassWord="";
     private Switch viewPassword;
-    public static final String UPLOAD_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/reportSystemLoginAPI.php";
+    public static final String LOGIN_URL = "http://"+ScannerConstants.ip+"/ReportingSystem/reportSystemLoginAPI.php";
 
 
     @Override
@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity {
         });
     }
     public void login(final String username, String password){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
