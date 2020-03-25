@@ -8,7 +8,7 @@
     tools:context=".SignUp">
 
 
-    <Edit
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/confirmpasswordid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"

@@ -14,7 +14,7 @@ class ScannerConstants {
     public static int index=0;
     public static String id="";
     public static String issue_for_this_member="";
-    public static String ip="192.168.0.103";
+    public static String ip="192.168.0.102";
     public static String data_table="data";
     public static String task_table="task";
     public static String login_data_table="login_data";
@@ -28,5 +28,6 @@ class ScannerConstants {
     public static ArrayList<String> USER_REPORT = new ArrayList<String>();
     public static ArrayList<String> issue = new ArrayList<String>();
     public static ArrayList<String> selectedImageName = new ArrayList<String>();
+    public static int num=0;
 
 }

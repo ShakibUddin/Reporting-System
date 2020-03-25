@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -79,6 +80,7 @@ public class UnderReviewPage extends AppCompatActivity {
                     ScannerConstants.jsonArraySize=jsonArray.length();
 
                     for(i=0;i<jsonArray.length();++i){
+                        ScannerConstants.num=10;
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String userid=jsonObject.getString("id");
                         String userissue=jsonObject.getString("issue");
