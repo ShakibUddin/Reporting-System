@@ -4,97 +4,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3222C3C"
+    android:background="#ffffff"
     tools:context=".AdminHomePage">
 
+
+    <ImageView
+        android:id="@+id/orangeimage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/generalcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/admin_home_usernameid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/rockwell"
+        android:gravity="center"
         android:padding="10dp"
+        android:layout_marginTop="10dp"
         android:text="Admin"
-        android:fontFamily="@font/rockwell"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:background="@drawable/submitbutton"
-        android:textSize="30sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.023" />
 
-    <Button
-        android:id="@+id/see_reports_button"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/admin_or_user_button_style"
-        android:padding="10dp"
-        android:text="See Reports"
-        android:textAllCaps="false"
-        android:fontFamily="@font/rockwell"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintTop_toBottomOf="@id/admin_home_usernameid"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/see_reports_button"
+                android:layout_width="140dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/menubutton"
+                android:drawableTop="@drawable/seereporticon"
+                android:fontFamily="@font/rockwell"
+                android:padding="10dp"
+                android:layout_marginLeft="40dp"
+                android:text="See Reports"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/add_member_button"
+                android:layout_width="140dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/menubutton"
+                android:drawableTop="@drawable/addmembericon"
+                android:fontFamily="@font/rockwell"
+                android:padding="10dp"
+                android:layout_marginLeft="60dp"
+                android:text="Add Member"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/admin_settings_button"
+                android:layout_width="140dp"
+                android:layout_height="160dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/menubutton"
+                android:drawableTop="@drawable/settingicon"
+                android:fontFamily="@font/rockwell"
+                android:padding="10dp"
+                android:text="Settings"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/admin_logout"
+                android:layout_width="140dp"
+                android:layout_height="160dp"
+                android:background="@drawable/menubutton"
+                android:drawableTop="@drawable/logouticon"
+                android:fontFamily="@font/rockwell"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="60dp"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/add_member_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/admin_or_user_button_style"
-        android:padding="10dp"
-        android:fontFamily="@font/rockwell"
-        android:text="Add Member"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
 
-    <Button
-        android:id="@+id/admin_settings_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/admin_or_user_button_style"
-        android:padding="10dp"
-        android:text="Settings"
-        android:fontFamily="@font/rockwell"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559" />
-
-    <Button
-        android:id="@+id/admin_logout"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/admin_or_user_button_style"
-        android:padding="10dp"
-        android:text="Logout"
-        android:fontFamily="@font/rockwell"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

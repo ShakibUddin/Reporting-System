@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,7 +29,7 @@ public class Login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
-    private Button signup;
+    private TextView signup;
     private String inputUserName="";
     private String inputPassWord="";
     private Switch viewPassword;
@@ -43,7 +44,7 @@ public class Login extends AppCompatActivity {
         username=(EditText)findViewById(R.id.usernameid);
         password=(EditText)findViewById(R.id.passwordid);
         login=(Button)findViewById(R.id.buttonlogin);
-        signup=(Button)findViewById(R.id.buttonsignup);
+        signup=(TextView)findViewById(R.id.buttonsignup);
         viewPassword=(Switch)findViewById(R.id.viewpassid);
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         viewPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

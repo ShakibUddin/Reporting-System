@@ -60,8 +60,8 @@ public class AllReportsPage extends AppCompatActivity {
         );
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundResource(R.color.background);
-        scroll.setBackgroundResource(R.color.background);
+        linearLayout.setBackgroundColor(Color.WHITE);
+        scroll.setBackgroundColor(Color.WHITE);
         setContentView(scroll);
 
         TextView user = new TextView(getApplicationContext());
@@ -74,11 +74,11 @@ public class AllReportsPage extends AppCompatActivity {
         usertextviewparams.width=600;
         usertextviewparams.gravity=Gravity.CENTER;
         user.setLayoutParams(usertextviewparams);
-        user.setText(ScannerConstants.user);
-        user.setTextColor(Color.WHITE);
+        user.setText("Reports");
+        user.setTextColor(Color.BLACK);
         user.setTextSize(35);
         user.setAllCaps(false);
-        user.setBackgroundResource(R.drawable.submitbutton);
+        user.setBackgroundColor(Color.WHITE);
         usertextviewparams.setMargins(0,100,0,10);
         user.setGravity(Gravity.CENTER);
         linearLayout.addView(user);
@@ -121,7 +121,7 @@ public class AllReportsPage extends AppCompatActivity {
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
 
-                        innerlinearLayout.setBackgroundResource(R.drawable.submitbutton);
+                        innerlinearLayout.setBackgroundResource(R.drawable.generalcolor);
 
                         TextView id = new TextView(getApplicationContext());
                         TextView issue = new TextView(getApplicationContext());
@@ -192,7 +192,7 @@ public class AllReportsPage extends AppCompatActivity {
                 innerlinearLayout.setOrientation(LinearLayout.VERTICAL);
                 innerlayoutParams.setMargins(40, 60, 40, 40);
                 linearLayout.addView(innerlinearLayout);
-                innerlinearLayout.setBackgroundResource(R.drawable.submitbutton);
+                innerlinearLayout.setBackgroundResource(R.drawable.generalcolor);
                 message.setLayoutParams(textviewparams);
                 message.setText("There are no reports at this moment");
                 message.setTextColor(Color.WHITE);

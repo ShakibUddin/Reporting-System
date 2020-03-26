@@ -100,8 +100,8 @@ public class MemberSignup extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(MemberSignup.this,"Select post",Toast.LENGTH_LONG).show();
                 }
                 if(inputpost.length()>0 && !inputpost.equals("Post")){
-                    post.setBackgroundResource(R.drawable.submitbutton);
-                    post.setPopupBackgroundResource(R.drawable.submitbutton);
+                    post.setBackgroundResource(R.drawable.generalcolor);
+                    post.setPopupBackgroundResource(R.drawable.generalcolor);
                 }
                 if(username.getError()!=null || password.getError()!=null || ConfirmPassword.getError()!=null || inputpost.length()==0|| inputpost.equals("Post")){
                     Toast.makeText(MemberSignup.this, "Please, Fill up required fields", Toast.LENGTH_LONG).show();

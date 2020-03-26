@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/orangehalf"
+        android:src="@drawable/generalcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,7 +31,7 @@
         android:text="Sakib"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
@@ -56,7 +56,7 @@
                 android:layout_width="140dp"
                 android:layout_height="160dp"
                 android:background="@drawable/menubutton"
-                android:drawableTop="@drawable/submit"
+                android:drawableTop="@drawable/submiticon"
                 android:fontFamily="@font/rockwell"
                 android:padding="10dp"
                 android:layout_marginLeft="140dp"
@@ -82,7 +82,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/menubutton"
-                android:drawableTop="@drawable/solved"
+                android:drawableTop="@drawable/solvedicon"
                 android:fontFamily="@font/rockwell"
                 android:padding="10dp"
                 android:layout_marginLeft="40dp"
@@ -97,7 +97,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/menubutton"
-                android:drawableTop="@drawable/underreview"
+                android:drawableTop="@drawable/underreviewicon"
                 android:fontFamily="@font/rockwell"
                 android:padding="10dp"
                 android:layout_marginLeft="60dp"
@@ -123,7 +123,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/menubutton"
-                android:drawableTop="@drawable/settings"
+                android:drawableTop="@drawable/settingicon"
                 android:fontFamily="@font/rockwell"
                 android:padding="10dp"
                 android:text="Settings"
@@ -135,7 +135,7 @@
                 android:layout_width="140dp"
                 android:layout_height="160dp"
                 android:background="@drawable/menubutton"
-                android:drawableTop="@drawable/logout"
+                android:drawableTop="@drawable/logouticon"
                 android:fontFamily="@font/rockwell"
                 android:padding="10dp"
                 android:layout_marginTop="5dp"
@@ -149,13 +149,4 @@
 
         </LinearLayout>
     </LinearLayout>
-
-
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

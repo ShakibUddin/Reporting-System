@@ -90,7 +90,6 @@ public class ReportSubmissionPage extends AppCompatActivity implements AdapterVi
         issue.setAdapter(adapter);
         issue.setOnItemSelectedListener(this);
 
-        username.setText(ScannerConstants.user.toUpperCase());
         id.setText(ScannerConstants.id);
         id.setEnabled(false);
         image.setOnClickListener(new View.OnClickListener() {

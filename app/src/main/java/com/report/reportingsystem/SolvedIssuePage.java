@@ -42,8 +42,8 @@ public class SolvedIssuePage extends AppCompatActivity {
         );
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundResource(R.color.background);
-        scroll.setBackgroundResource(R.color.background);
+        linearLayout.setBackgroundColor(Color.WHITE);
+        scroll.setBackgroundColor(Color.WHITE);
         setContentView(scroll);
 
         TextView status = new TextView(getApplicationContext());
@@ -57,11 +57,11 @@ public class SolvedIssuePage extends AppCompatActivity {
         statustextviewparams.gravity= Gravity.CENTER;
         status.setLayoutParams(statustextviewparams);
         status.setText("Solved Issues");
-        status.setTextColor(Color.WHITE);
+        status.setTextColor(Color.BLACK);
         status.setTextSize(30);
         status.setPadding(10,10,10,10);
         status.setAllCaps(false);
-        status.setBackgroundResource(R.drawable.submitbutton);
+        status.setBackgroundColor(Color.WHITE);
         statustextviewparams.setMargins(0,100,0,10);
         status.setGravity(Gravity.CENTER);
         linearLayout.addView(status);
@@ -95,7 +95,7 @@ public class SolvedIssuePage extends AppCompatActivity {
 
                         innerlinearLayout.setId(i);//giving unique id to each inner linear layouts
 
-                        innerlinearLayout.setBackgroundResource(R.drawable.submitbutton);
+                        innerlinearLayout.setBackgroundResource(R.drawable.generalcolor);
 
                         TextView id = new TextView(getApplicationContext());
                         TextView issue = new TextView(getApplicationContext());

@@ -5,10 +5,9 @@
     android:layout_height="wrap_content"
     android:textColor="#ffffff"
     android:fontFamily="@font/rockwell"
-    android:textSize="25sp"
+    android:textSize="20sp"
     android:text="Lab"
-    android:drawableRight="@mipmap/dropdownarrow"
-    android:background="@drawable/submitbutton"
+    android:background="@drawable/generalcolor"
     android:textAllCaps="false">
 
 </CheckedTextView>

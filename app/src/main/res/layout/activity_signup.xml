@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup_background"
+    android:background="#ffffff"
     tools:context=".SignUp">
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/confirmpasswordid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/generalcolor"
         android:hint="Confirm Password"
         android:textAllCaps="false"
         android:fontFamily="@font/rockwell"
@@ -28,7 +28,7 @@
         android:id="@+id/employee_org_id"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/generalcolor"
         android:hint="ID"
         android:textAllCaps="false"
         android:fontFamily="@font/rockwell"
@@ -44,7 +44,7 @@
         android:id="@+id/usernameid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/generalcolor"
         android:fontFamily="@font/rockwell"
         android:hint="Username"
         android:textAllCaps="false"
@@ -61,7 +61,7 @@
         android:id="@+id/passwordid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/generalcolor"
         android:fontFamily="@font/rockwell"
         android:hint="Password"
         android:textAllCaps="false"
@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/buttonsignup"
-        android:layout_width="100dp"
+        android:layout_width="250dp"
         android:fontFamily="@font/rockwell"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -103,8 +103,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/signupbutton"
+        android:background="@drawable/generalcolor"
         android:text="Signup"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,16 +119,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/rockwell"
         android:text="Registration"
         android:textAllCaps="false"
-        android:textColor="#13DF07"
+        android:textColor="#000000"
         android:textSize="30sp"
-        android:fontFamily="@font/rockwell"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
