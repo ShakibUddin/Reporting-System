@@ -1,0 +1,2 @@
+# Reporting-System-Android-App
+This android app will help any organization with their reporting. I built this app to help the normal people like us to  report our problmes to the government. A user will signup using their unique and verified id. He/she will submit a problem to the admin for review. Images can be added if necessary. If the admin thinks the problem is worth solving he can assign it to the concerned moderator. Admin can add or delete moderator himself. When a problem is solved everyone will be notified. 
