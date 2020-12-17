@@ -2,11 +2,11 @@
 This android app will help any organization with their reporting. I built this app to help the normal people like us to  report our problmes to the government. A user will signup using their unique and verified id. He/she will submit a problem to the admin for review. Images can be added if necessary. If the admin thinks the problem is worth solving he can assign it to the concerned moderator. Admin can add or delete moderator himself. When a problem is solved everyone will be notified. 
 The database of this app hosted locally. SO change the ip in ScannerConstants.java to your ip. You also need to create the tables. I used php to communicate wth the server. So most features will not work if you download and run the code. PHP scripts are also attached witn the app code.
 
-#Technology used
+# Technology used
 Volley for networking
 Php and mysql for backend
 
-#Screenshots
+# Screenshots
 ![1](https://user-images.githubusercontent.com/45873925/102465485-e7d95d00-4077-11eb-97cf-15fd7f298fee.jpg)
 ![2](https://user-images.githubusercontent.com/45873925/102465488-e90a8a00-4077-11eb-8331-565003e23713.jpg)
 ![3](https://user-images.githubusercontent.com/45873925/102465491-e9a32080-4077-11eb-82fa-902e6998f472.jpg)
